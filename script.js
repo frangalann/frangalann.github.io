@@ -81,10 +81,6 @@ function crearTarjetaLibro(libro, index) {
   const tarjeta = document.createElement("div");
   tarjeta.className = "card h-100";
 
-  const imagen = document.createElement("img");
-  imagen.src = libro.imagen || "https://via.placeholder.com/150";
-  imagen.className = "card-img-top";
-  imagen.alt = libro.titulo;
 
   const cuerpo = document.createElement("div");
   cuerpo.className = "card-body";
@@ -111,7 +107,7 @@ function crearTarjetaLibro(libro, index) {
   boton.innerText = "🗑️";
 
   cuerpo.append(titulo, autor, estado, puntaje, boton);
-  tarjeta.append(imagen, cuerpo);
+  tarjeta.append(cuerpo);
   div.append(tarjeta);
   grillaLibros.appendChild(div);
 }
@@ -159,7 +155,6 @@ formularioLibro.addEventListener("submit", (e) => {
     autor: document.getElementById("autor").value.trim(),
     serie: document.getElementById("serie").value.trim(),
     puntaje: document.getElementById("puntaje").value.trim(),
-    imagen: document.getElementById("imagen").value.trim(),
     generos: document.getElementById("generos").value.trim(),
     estado: document.getElementById("estadoLibro").value,
     comentario: document.getElementById("comentario").value.trim(),
