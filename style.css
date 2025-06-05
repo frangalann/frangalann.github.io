@@ -1,36 +1,64 @@
+/* estilosBiblioteca.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
 body {
-  background-color: #ffffff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
+  font-family: 'Sour Gummy', sans-serif;
+  background-color: #D1D5DB; /* gris claro visible */
+  color: #1F2937; /* gris oscuro para texto */
+  margin: 0;
+  padding: 0;
 }
 
-.tituloPrincipal {
-  font-size: 2.5rem;
-  font-weight: bold;
+header {
+  background-color: #111827;
+  color: #ffffff;
+  padding: 1.5rem 0;
 }
 
-.bloqueContador, .bloqueLeyendo, .formularioLibro, .grillaLibros {
-  background-color: rgb(255, 255, 255);
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+.bloqueContador,
+.bloqueLeyendo,
+.formularioLibro,
+.grillaLibros {
+  background-color: #F3F4F6; /* gris más claro para contraste con fondo */
+  border-radius: 12px;
   padding: 1rem;
+  border: 1px solid #9CA3AF;
 }
 
 .botonContador {
   width: 40px;
   height: 40px;
   font-size: 1.25rem;
+  border-radius: 8px;
 }
-
+.filtrosLibros {
+  background-color: #F3F4F6;
+  font-size: 1.25rem;
+  border-radius: 8px;
+}
 .contadorLibrosNumero {
   min-width: 30px;
   display: inline-block;
   text-align: center;
 }
 
+.tarjetaLibro .card {
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background-color: #F9FAFB;
+  border: 1px solid #9CA3AF;
+  transition: transform 0.2s;
+}
+
+.tarjetaLibro .card:hover {
+  transform: translateY(-4px);
+}
+
 .tarjetaLibro .card-title {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 .tarjetaLibro .card-text {
@@ -39,21 +67,76 @@ body {
 }
 
 .puntajeLibro {
-  color: #f1c40f;
+  color: #FBBF24; /* amarillo para estrellas */
 }
+.subtituloEstanteria {
+  margin-bottom: 2.5 rem;
+}
+#grillaLibros {
+  margin-top: 1rem;
+}
+
 
 .botonEliminar {
   margin-top: 10px;
   float: right;
+  border-radius: 10px;
+}
+.botonFiltro {
+  border: 1px solid #6B7280;
+  color: #1F2937; /* gris oscuro = texto negro */
+  background-color: transparent;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.botonFiltro:hover {
+  background-color: #D1D5DB; /* un gris claro al pasar el mouse */
 }
 
 .botonFiltro.activo {
-  background-color: #0d6efd;
-  color: white;
+  background-color: #374151; /* gris oscuro */
+  color: #ffffff;            /* texto blanco al activarse */
+  border: none;
+}
+
+.btn {
+  border-radius: 12px !important;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background-color: #111827;
+  color: #ffffff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #D1D5DB;
+}
+
+input,
+textarea,
+select {
+  border-radius: 10px;
+  border: 1px solid #9CA3AF;
+  font-size: 0.95rem;
+  padding: 0.6rem;
+  background-color: #F9FAFB;
+  color: #1F2937;
+}
+
+.subtituloEstanteria,
+.subtituloFormulario {
+  font-weight: 600;
+  font-size: 1.4rem;
 }
 
 @media (max-width: 576px) {
   .formularioLibro {
     padding: 0.5rem;
+  }
+  .tituloPrincipal {
+    font-size: 2rem;
   }
 }

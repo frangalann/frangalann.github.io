@@ -50,7 +50,9 @@ inputLeyendo.addEventListener("change", () => {
   const valor = inputLeyendo.value.trim();
   librosLeyendo.innerText = valor;
   localStorage.setItem("leyendoAhora", valor);
+  inputLeyendo.value = ""
 });
+
 
 const leyendoGuardado = localStorage.getItem("leyendoAhora");
 if (leyendoGuardado) {

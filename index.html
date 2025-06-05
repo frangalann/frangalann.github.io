@@ -6,10 +6,11 @@
   <title>Mi Biblioteca</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Encabezado -->
-  <header class="bg-light py-4">
+  <header class="py-4">
     <div class="container text-center">
       <h1 class="tituloPrincipal">📚 Mi Biblioteca</h1>
     </div>
@@ -19,14 +20,14 @@
 
     <!-- Sección actualmente leyendo -->
     <section id="leyendoAhora" class="mb-4">
-      <div class="card bg-dark text-white p-3 bloqueLeyendo">
+      <div class="p-3 bloqueLeyendo">
         <p><strong>Leyendo ahora:</strong> <span id="librosLeyendo"></span></p>
       </div>
     </section>
 
     <!-- Contador de libros -->
     <section id="contadorLibros" class="mb-5">
-      <div class="card p-3 text-center bloqueContador">
+      <div class="p-3 text-center bloqueContador">
         <h3>Libros leídos en <span id="anioActual">2025</span></h3>
         <div class="d-flex justify-content-center align-items-center gap-3 my-2">
           <button id="botonRestar" class="btn btn-secondary botonContador">−</button>
@@ -37,14 +38,14 @@
       </div>
     </section>
 
-    <!-- Filtros -->
+    <!-- Filtros de libros -->
     <section id="filtrosLibros" class="mb-4">
       <div class="d-flex flex-wrap gap-2 filtrosLibros">
-        <button class="btn btn-outline-light botonFiltro activo" data-filtro="todos">📚 Todos</button>
-        <button class="btn btn-outline-light botonFiltro" data-filtro="leido">✅ Leídos</button>
-        <button class="btn btn-outline-light botonFiltro" data-filtro="tbr">📖 Por leer</button>
-        <button class="btn btn-outline-light botonFiltro" data-filtro="wishlist">⭐ Wishlist</button>
-        <button class="btn btn-outline-light botonFiltro" data-filtro="leyendo">📕 En curso</button>
+        <button class="botonFiltro activo" data-filtro="todos">📚 Todos</button>
+        <button class="botonFiltro" data-filtro="leido">✅ Leídos</button>
+        <button class="botonFiltro" data-filtro="tbr">📖 Por leer</button>
+        <button class="botonFiltro" data-filtro="wishlist">⭐ Wishlist</button>
+        <button class="botonFiltro" data-filtro="leyendo">📕 En curso</button>
       </div>
     </section>
 
@@ -52,7 +53,6 @@
     <section id="estanteria">
       <h2 class="mb-3 subtituloEstanteria">Estantería</h2>
       <div id="grillaLibros" class="row g-4 grillaLibros">
-        <!-- Tarjetas de libros se insertan por JS -->
       </div>
     </section>
 
