@@ -67,7 +67,7 @@ function crearTarjetaLibro(libro, index) {
 
   const imagen = document.createElement("img");
   imagen.className = "card-img-top";
-  imagen.src = "libro.png";
+  imagen.src = "Libro.png";
 
   const titulo = document.createElement("h5");
   titulo.className = "card-title";
