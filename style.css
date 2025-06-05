@@ -2,6 +2,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
 
+*{
+  font-family: 'Sour Gummy', sans-serif;
+}
+
 body {
   font-family: 'Sour Gummy', sans-serif;
   background-color: #D1D5DB; /* gris claro visible */
@@ -10,20 +14,64 @@ body {
   padding: 0;
 }
 
-header {
-  background-color: #111827;
-  color: #ffffff;
-  padding: 1.5rem 0;
+.headerHeroVideo {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
 }
 
+.videoFondo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.contenidoHeader {
+  position: relative;
+  z-index: 1;
+  color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 1rem;
+  background-color: rgba(0, 0, 0, 0.3); /* leve oscurecimiento */
+}
+
+
+
+.botonHero {
+  background-color: #F3F4F6;
+  color: #111827;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.botonHero:hover {
+  background-color: #D1D5DB;
+  color: #111827;
+}
+
+
+
+
 .bloqueContador,
-.bloqueLeyendo,
 .formularioLibro,
 .grillaLibros {
   background-color: #F3F4F6; /* gris más claro para contraste con fondo */
   border-radius: 12px;
   padding: 1rem;
   border: 1px solid #9CA3AF;
+  margin-top: 1rem;
 }
 
 .botonContador {
@@ -36,6 +84,7 @@ header {
   background-color: #F3F4F6;
   font-size: 1.25rem;
   border-radius: 8px;
+  margin-top: 2rem;
 }
 .contadorLibrosNumero {
   min-width: 30px;
@@ -51,6 +100,10 @@ header {
   transition: transform 0.2s;
 }
 
+.tarjetaLibro {
+  gap: 1rem;
+  justify-content: center;
+}
 .tarjetaLibro .card:hover {
   transform: translateY(-4px);
 }

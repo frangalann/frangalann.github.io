@@ -36,29 +36,7 @@ function actualizarContador() {
   localStorage.setItem("librosLeidos", contador);
 }
 
-// SECCION "LEYENDO AHORA"
-const librosLeyendo = document.getElementById("librosLeyendo");
-const inputLeyendo = document.createElement("input");
 
-inputLeyendo.placeholder = "Ingresá el título del libro que estás leyendo";
-inputLeyendo.className = "form-control mt-3";
-inputLeyendo.id = "inputLeyendo";
-
-librosLeyendo.parentNode.insertBefore(inputLeyendo, librosLeyendo.nextSibling);
-
-inputLeyendo.addEventListener("change", () => {
-  const valor = inputLeyendo.value.trim();
-  librosLeyendo.innerText = valor;
-  localStorage.setItem("leyendoAhora", valor);
-  inputLeyendo.value = ""
-});
-
-
-const leyendoGuardado = localStorage.getItem("leyendoAhora");
-if (leyendoGuardado) {
-  librosLeyendo.innerText = leyendoGuardado;
-  inputLeyendo.value = leyendoGuardado;
-}
 
 // AGREGAR LIBRO A LA ESTANTERIA
 const formularioLibro = document.getElementById("formularioLibro");
@@ -87,6 +65,10 @@ function crearTarjetaLibro(libro, index) {
   const cuerpo = document.createElement("div");
   cuerpo.className = "card-body";
 
+  const imagen = document.createElement("img");
+  imagen.className = "card-img-top";
+  imagen.src = "/libro.png";
+
   const titulo = document.createElement("h5");
   titulo.className = "card-title";
   titulo.innerText = libro.titulo;
@@ -108,7 +90,7 @@ function crearTarjetaLibro(libro, index) {
   boton.setAttribute("data-index", index);
   boton.innerText = "🗑️";
 
-  cuerpo.append(titulo, autor, estado, puntaje, boton);
+  cuerpo.append(imagen, titulo, autor, estado, puntaje, boton);
   tarjeta.append(cuerpo);
   div.append(tarjeta);
   grillaLibros.appendChild(div);
