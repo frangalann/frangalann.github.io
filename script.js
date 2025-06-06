@@ -34,6 +34,8 @@ function actualizarContador() {
   localStorage.setItem("librosLeidos", contador);
 }
 
+let modoEdicion = false;
+let indiceEditar = null;
 
 
 // AGREGAR LIBRO A LA ESTANTERIA
@@ -55,6 +57,7 @@ function crearTarjetaLibro(libro, index) {
 
   const div = document.createElement("div");
   div.className = "col-md-4 tarjetaLibro";
+  div.setAttribute("data-id", libro.id);
 
   const tarjeta = document.createElement("div");
   tarjeta.className = "card h-100";
@@ -83,12 +86,24 @@ function crearTarjetaLibro(libro, index) {
   puntaje.className = "card-text puntajeLibro";
   puntaje.innerText = mostrarEstrellas(libro.puntaje);
 
-  const boton = document.createElement("button");
-  boton.className = "btn btn-outline-danger btn-sm botonEliminar";
-  boton.setAttribute("data-index", index);
-  boton.innerText = "🗑️";
+  const contenedorBotones = document.createElement("div");
 
-  cuerpo.append(imagen, titulo, autor, estado, puntaje, boton);
+  contenedorBotones.className = "d-flex justify-content-between";
+
+  const botonEditar = document.createElement("button");
+  botonEditar.className = "btn btn-outline-secondary btn-sm botonEditar";
+  botonEditar.setAttribute("data-id", libro.id);
+  botonEditar.innerText = "✏️";
+
+  const botonEliminar = document.createElement("button");
+  botonEliminar.className = "btn btn-outline-danger btn-sm botonEliminar";
+  botonEliminar.setAttribute("data-id", libro.id);
+  botonEliminar.innerText = "🗑️";
+
+  contenedorBotones.append(botonEditar, botonEliminar);
+
+
+  cuerpo.append(imagen, titulo, autor, estado, puntaje, contenedorBotones);
   tarjeta.append(cuerpo);
   div.append(tarjeta);
   grillaLibros.appendChild(div);
@@ -115,15 +130,18 @@ function renderizarLibros() {
   const libros = obtenerLibrosGuardados();
   libros.forEach((libro, index) => crearTarjetaLibro(libro, index));
   agregarEventosEliminar();
+  agregarEventosEditar(); 
   agregarEventosDetalles();
 }
 
 function agregarEventosEliminar() {
   const botonesEliminar = document.querySelectorAll(".botonEliminar");
   botonesEliminar.forEach((boton) => {
-    boton.addEventListener("click", () => {
-      const index = parseInt(boton.dataset.index);
+    boton.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const id = boton.dataset.id;
       const libros = obtenerLibrosGuardados();
+      const index = libros.findIndex(l => l.id == id);
       libros.splice(index, 1);
       guardarLibros(libros);
       renderizarLibros();
@@ -131,9 +149,43 @@ function agregarEventosEliminar() {
   });
 }
 
+function agregarEventosEditar() {
+  const botonesEditar = document.querySelectorAll(".botonEditar");
+  botonesEditar.forEach((boton) => {
+    boton.addEventListener("click", (e) => {
+      e.stopPropagation(); // evita que se dispare el click de la tarjeta
+      const id = boton.dataset.id;
+      const libros = obtenerLibrosGuardados();
+      const libro = libros.find(l => l.id == id);
+      const index = libros.findIndex(l => l.id == id);
+
+      // Llenar el formulario con los datos del libro
+      document.getElementById("titulo").value = libro.titulo;
+      document.getElementById("autor").value = libro.autor;
+      document.getElementById("serie").value = libro.serie;
+      document.getElementById("puntaje").value = libro.puntaje;
+      document.getElementById("generos").value = libro.generos;
+      document.getElementById("estadoLibro").value = libro.estado;
+      document.getElementById("comentario").value = libro.comentario;
+
+      // Activar modo edición
+      modoEdicion = true;
+      indiceEditar = index;
+
+      // Scrollear al formulario
+      window.scrollTo({
+        top: document.getElementById("agregarLibro").offsetTop,
+        behavior: "smooth",
+      });
+    });
+  });
+}
+
+
 formularioLibro.addEventListener("submit", (e) => {
   e.preventDefault();
   const nuevoLibro = {
+    id: Date.now(), 
     titulo: document.getElementById("titulo").value.trim(),
     autor: document.getElementById("autor").value.trim(),
     serie: document.getElementById("serie").value.trim(),
@@ -143,7 +195,14 @@ formularioLibro.addEventListener("submit", (e) => {
     comentario: document.getElementById("comentario").value.trim(),
   };
   const libros = obtenerLibrosGuardados();
-  libros.push(nuevoLibro);
+  if (modoEdicion) {
+    libros[indiceEditar] = nuevoLibro;
+    modoEdicion = false;
+    indiceEditar = null;
+} else {
+    libros.push(nuevoLibro);
+}
+
   guardarLibros(libros);
   formularioLibro.reset();
   renderizarLibros();
@@ -166,14 +225,12 @@ document.addEventListener("DOMContentLoaded", () => {
 function agregarEventosDetalles() {
   const tarjetas = document.querySelectorAll(".tarjetaLibro");
 
-  tarjetas.forEach((tarjeta, index) => {
+  tarjetas.forEach((tarjeta) => {
     tarjeta.addEventListener("click", () => {
+      const id = tarjeta.dataset.id;
       const libros = obtenerLibrosGuardados();
-      const libro = libros[index];
-
-      // Llenar el modal con info del libro
+      const libro = libros.find(l => l.id == id);
       document.getElementById("modalTitulo").innerText = libro.titulo;
-
       document.getElementById("modalCuerpo").innerHTML = `
         <p><strong>Autor:</strong> ${libro.autor}</p>
         <p><strong>Serie:</strong> ${libro.serie || "—"}</p>
@@ -181,11 +238,10 @@ function agregarEventosDetalles() {
         <p><strong>Puntaje:</strong> ${mostrarEstrellas(libro.puntaje)}</p>
         <p><strong>Comentario:</strong> ${libro.comentario || "—"}</p>
       `;
-
-      // Mostrar modal
       const modal = new bootstrap.Modal(document.getElementById("modalLibro"));
       modal.show();
     });
   });
 }
+
 
