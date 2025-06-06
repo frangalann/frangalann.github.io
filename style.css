@@ -191,6 +191,13 @@ select {
   font-size: 1.4rem;
 }
 
+.modal-body{
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  word-wrap: break-word;
+}
+
 @media (max-width: 576px) {
   .formularioLibro {
     padding: 0.5rem;

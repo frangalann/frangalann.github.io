@@ -1,6 +1,4 @@
-// script.js
 
-// CONTADOR DE LIBROS LEIDOS
 const botonSumar = document.getElementById("botonSumar");
 const botonRestar = document.getElementById("botonRestar");
 const botonReiniciar = document.getElementById("botonReiniciar");
@@ -117,6 +115,7 @@ function renderizarLibros() {
   const libros = obtenerLibrosGuardados();
   libros.forEach((libro, index) => crearTarjetaLibro(libro, index));
   agregarEventosEliminar();
+  agregarEventosDetalles();
 }
 
 function agregarEventosEliminar() {
@@ -152,12 +151,41 @@ formularioLibro.addEventListener("submit", (e) => {
 
 document.addEventListener("DOMContentLoaded", () => {
   renderizarLibros();
+  agregarEventosDetalles();
   botonesFiltro.forEach(boton => {
     boton.addEventListener("click", () => {
       botonesFiltro.forEach(b => b.classList.remove("activo"));
       boton.classList.add("activo");
       filtroActivo = boton.dataset.filtro;
       renderizarLibros();
+      agregarEventosDetalles();
     });
   });
 });
+
+function agregarEventosDetalles() {
+  const tarjetas = document.querySelectorAll(".tarjetaLibro");
+
+  tarjetas.forEach((tarjeta, index) => {
+    tarjeta.addEventListener("click", () => {
+      const libros = obtenerLibrosGuardados();
+      const libro = libros[index];
+
+      // Llenar el modal con info del libro
+      document.getElementById("modalTitulo").innerText = libro.titulo;
+
+      document.getElementById("modalCuerpo").innerHTML = `
+        <p><strong>Autor:</strong> ${libro.autor}</p>
+        <p><strong>Serie:</strong> ${libro.serie || "—"}</p>
+        <p><strong>Géneros:</strong> ${libro.generos || "—"}</p>
+        <p><strong>Puntaje:</strong> ${mostrarEstrellas(libro.puntaje)}</p>
+        <p><strong>Comentario:</strong> ${libro.comentario || "—"}</p>
+      `;
+
+      // Mostrar modal
+      const modal = new bootstrap.Modal(document.getElementById("modalLibro"));
+      modal.show();
+    });
+  });
+}
+
