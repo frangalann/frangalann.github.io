@@ -74,6 +74,11 @@ body {
   margin-top: 1rem;
 }
 
+.bloqueContador {
+  transform: translateX(-1.0%);
+  width: 102%;
+  align-items: center;
+}
 .botonContador {
   width: 40px;
   height: 40px;
@@ -85,6 +90,7 @@ body {
   font-size: 1.25rem;
   border-radius: 8px;
   margin-top: 2rem;
+  width: fit-content;
 }
 .contadorLibrosNumero {
   min-width: 30px;
