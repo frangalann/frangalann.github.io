@@ -84,7 +84,11 @@ function crearTarjetaLibro(libro, index) {
 
   const puntaje = document.createElement("p");
   puntaje.className = "card-text puntajeLibro";
-  puntaje.innerText = mostrarEstrellas(libro.puntaje);
+
+  const estrellas = mostrarEstrellas(libro.puntaje);
+  puntaje.innerHTML = estrellas !== "" ? estrellas : "<span>☆☆☆☆☆</span>";
+
+
 
   const contenedorBotones = document.createElement("div");
 
