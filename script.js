@@ -242,7 +242,8 @@ function agregarEventosDetalles() {
         <p><strong>Puntaje:</strong> ${mostrarEstrellas(libro.puntaje)}</p>
         <p><strong>Comentario:</strong> ${libro.comentario || "—"}</p>
       `;
-      const modal = new bootstrap.Modal(document.getElementById("modalLibro"));
+      const modalElemento = document.getElementById("modalLibro");
+      const modal = bootstrap.Modal.getOrCreateInstance(modalElemento);
       modal.show();
     });
   });
