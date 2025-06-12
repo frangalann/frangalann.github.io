@@ -157,7 +157,7 @@ function agregarEventosEditar() {
   const botonesEditar = document.querySelectorAll(".botonEditar");
   botonesEditar.forEach((boton) => {
     boton.addEventListener("click", (e) => {
-      e.stopPropagation(); // evita que se dispare el click de la tarjeta
+      e.stopPropagation();
       const id = boton.dataset.id;
       const libros = obtenerLibrosGuardados();
       const libro = libros.find(l => l.id == id);

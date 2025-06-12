@@ -1,4 +1,4 @@
-/* estilosBiblioteca.css */
+
 
 @import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
 
@@ -8,8 +8,8 @@
 
 body {
   font-family: 'Sour Gummy', sans-serif;
-  background-color: #D1D5DB; /* gris claro visible */
-  color: #1F2937; /* gris oscuro para texto */
+  background-color: #D1D5DB; 
+  color: #1F2937; 
   margin: 0;
   padding: 0;
 }
@@ -41,7 +41,7 @@ body {
   align-items: center;
   text-align: center;
   padding: 0 1rem;
-  background-color: rgba(0, 0, 0, 0.3); /* leve oscurecimiento */
+  background-color: rgba(0, 0, 0, 0.3); 
 }
 
 
@@ -67,7 +67,7 @@ body {
 .bloqueContador,
 .formularioLibro,
 .grillaLibros {
-  background-color: #F3F4F6; /* gris más claro para contraste con fondo */
+  background-color: #F3F4F6; 
   border-radius: 12px;
   padding: 1rem;
   border: 1px solid #9CA3AF;
@@ -126,7 +126,7 @@ body {
 }
 
 .puntajeLibro {
-  color: #FBBF24; /* amarillo para estrellas */
+  color: #FBBF24; 
 }
 .subtituloEstanteria {
   margin-bottom: 2.5 rem;
@@ -143,19 +143,19 @@ body {
 }
 .botonFiltro {
   border: 1px solid #6B7280;
-  color: #1F2937; /* gris oscuro = texto negro */
+  color: #1F2937; 
   background-color: transparent;
   border-radius: 12px;
   transition: all 0.3s ease;
 }
 
 .botonFiltro:hover {
-  background-color: #D1D5DB; /* un gris claro al pasar el mouse */
+  background-color: #D1D5DB; 
 }
 
 .botonFiltro.activo {
-  background-color: #374151; /* gris oscuro */
-  color: #ffffff;            /* texto blanco al activarse */
+  background-color: #374151;
+  color: #ffffff;            
   border: none;
 }
 
