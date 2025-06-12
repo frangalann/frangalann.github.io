@@ -1,3 +1,4 @@
+//Javascript
 
 const botonSumar = document.getElementById("botonSumar");
 const botonRestar = document.getElementById("botonRestar");
